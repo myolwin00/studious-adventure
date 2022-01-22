@@ -15,6 +15,7 @@ import com.emrys.navinset.databinding.FragmentHomeBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import dev.chrisbanes.insetter.Insetter
 import dev.chrisbanes.insetter.Side
+import dev.chrisbanes.insetter.applyInsetter
 import dev.chrisbanes.insetter.windowInsetTypesOf
 
 class HomeFragment : Fragment() {
@@ -52,13 +53,17 @@ class HomeFragment : Fragment() {
         binding.rvList.adapter = adapter
         adapter.submitList(list)
 
-        Insetter.builder()
-            .margin(windowInsetTypesOf(statusBars = true), Side.TOP)
-            .applyToView(binding.btnTop)
+        binding.btnTop.applyInsetter {
+            type(statusBars = true) {
+                margin(top = true)
+            }
+        }
 
-        Insetter.builder()
-            .margin(windowInsetTypesOf(navigationBars = true), Side.BOTTOM)
-            .applyToView(binding.btnBot)
+        binding.btnBot.applyInsetter {
+            type(navigationBars = true) {
+                margin(bottom = true)
+            }
+        }
 
     }
 
